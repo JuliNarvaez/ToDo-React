@@ -7,11 +7,9 @@ export default class IconButton extends Component {
 
     render() {
         return (
-            <>
-                <button className="card_button" onClick={this.props.onClick}>
-                    {this.props.icon}
-                </button>
-            </>
+            <button className="card_button" onClick={this.props.onClick}>
+                {this.props.icon}
+            </button>
         )
     }
 }

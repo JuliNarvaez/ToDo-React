@@ -9,23 +9,21 @@
     border-radius: 5px;
     border: 1px solid #d7d7d7;
     text-align: left;
+    row-gap: 8px;
+
+    p {
+        margin: 0;
+    }
+
+    &_icons {
+        align-self: flex-end;
+    }
 
     &_button {
-        align-self: flex-end;
-        color: salmon;
-        font-variation-settings:
-            'FILL' 1,
-            'wght' 700,
-            'GRAD' 0,
-            'opsz' 48;
-
-        &:hover {
-            color: rgb(251, 45, 22);
-        }
-
         background-color: transparent;
         border: none;
         cursor: pointer;
+        font-size: 16px;
     }
 
     &_note {

@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react"
-import { getNote } from "../Utils/apiRequest"
+import { useContext } from "react"
 import Card from "./Card/Card"
+import { NotesContext } from "./Provider/NotesProvider"
 
 export default function List() {
 
-    const [notes, setNotes] = useState([])
-
-    useEffect(() => {
-        const getNotes = async () => {
-            const data = await getNote();
-            setNotes(data);
-        }
-        getNotes()
-    }, [])
+    const { notes, isLoading } = useContext(NotesContext);
 
     return (
-        notes.map((note) =>
-            <Card note={note} key={note.id} />
-        )
+        <div>
+            {isLoading && <p>Loading...</p>}
+            {notes.map((note) =>
+                <Card note={note} key={note.id} />
+            )}
+        </div>
     )
 }
 

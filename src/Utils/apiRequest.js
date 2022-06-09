@@ -11,15 +11,14 @@ export async function getNote() {
 }
 
 export async function createNote(body) {
+    console.log(body);
     try {
         const response = await fetch(baseUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                body
-            })
+            body: JSON.stringify(body)
         })
         const notes = response.json()
         return notes;
@@ -51,7 +50,8 @@ export async function deleteNote(id) {
         const response = await fetch(`${baseUrl}/${id}`, {
             method: 'DELETE',
         })
-        console.log(`Deleted note number: #${id}`)
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error(error.message);
     }

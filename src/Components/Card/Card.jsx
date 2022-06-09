@@ -1,12 +1,19 @@
 import "./card.scss";
-import IconButton from './DeleteButton'
+import IconButton from './IconButton'
 import formatDate from "../../Utils/dateFormatter";
-import { Trash2 } from "react-feather";
+import { Edit2, Trash2 } from "react-feather";
 
 function delNote(id) {
-    console.log("Delete note with id: " + id);
+    return () => {
+        console.log("Delete note with id: " + id);
+    }
 }
 
+function editNote(id) {
+    return () => {
+        console.log("Edit note with id: " + id);
+    }
+}
 
 export default function Card({ note }) {
 
@@ -15,7 +22,10 @@ export default function Card({ note }) {
 
     return <>
         <div className="card">
-            <IconButton icon={<Trash2 />} onClick={() => delNote(note.id)} />
+            <div className="card_icons">
+                <IconButton icon={<Edit2 color="darkblue" size={16} />} onClick={editNote(note.id)} />
+                <IconButton icon={<Trash2 color="salmon" size={16} />} onClick={delNote(note.id)} />
+            </div>
             <div className="card_note"> <p>{note.content}</p></div>
             <div className="card_date">
                 <div className="card_created"><p>Created At: {createDate}</p></div>
