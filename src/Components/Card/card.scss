@@ -33,10 +33,16 @@
     &_created,
     &_updated {
         font-size: 10px;
+        display: flex;
+        align-items: center;
+        margin: 10px;
+        column-gap: 8px;
+
     }
 
     &_date {
         display: flex;
         justify-content: space-between;
+
     }
 }

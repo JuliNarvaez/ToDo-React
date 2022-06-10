@@ -10,15 +10,17 @@ export async function getNote() {
     }
 }
 
-export async function createNote(body) {
-    console.log(body);
+export async function createNote(noteContent) {
+    console.log(noteContent);
     try {
         const response = await fetch(baseUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify({
+                content: noteContent
+            })
         })
         const notes = response.json()
         return notes;
@@ -27,16 +29,14 @@ export async function createNote(body) {
     }
 }
 
-export async function updateNote(body, id) {
+export async function updateNote({ id, value }) {
     try {
-        const response = await fetch(baseUrl + id, {
+        const response = await fetch(`${baseUrl}${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                body
-            })
+            body: JSON.stringify({ content: value })
         })
         const notes = response.json()
         return notes;
@@ -47,11 +47,9 @@ export async function updateNote(body, id) {
 
 export async function deleteNote(id) {
     try {
-        const response = await fetch(`${baseUrl}/${id}`, {
+        await fetch(`${baseUrl}${id}`, {
             method: 'DELETE',
         })
-        const data = await response.json();
-        return data;
     } catch (error) {
         console.error(error.message);
     }
